@@ -1,0 +1,39 @@
+# 发版：打 v* tag 自动构建并发布到 PyPI（Trusted Publishing，无需 token）。
+#
+# 前置（一次性）：PyPI 账号 → 项目/账号设置 → Publishing → Add trusted publisher：
+#   Owner: QuantSonar / Repository: quantsonar-python
+#   Workflow: publish.yml / Environment: pypi
+#
+# 发版：git tag v0.1.0 && git push --tags
+name: publish
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build && python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write   # Trusted Publishing 的 OIDC 凭证
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1

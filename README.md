@@ -1,5 +1,7 @@
 # QuantSonar Python SDK
 
+[![tests](https://github.com/QuantSonar/quantsonar-python/actions/workflows/tests.yml/badge.svg)](https://github.com/QuantSonar/quantsonar-python/actions/workflows/tests.yml) [![PyPI](https://img.shields.io/pypi/v/quantsonar)](https://pypi.org/project/quantsonar/)
+
 [QuantSonar](https://quantsonar.com) 官方 Python SDK —— A 股行情、财务、资金流、筹码、龙虎榜，38 个数据接口，一个 API Key 全部拿到。
 
 ## 安装
