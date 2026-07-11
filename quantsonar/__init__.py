@@ -6,6 +6,8 @@
 
 文档：https://quantsonar.com/docs
 """
+from __future__ import annotations
+
 from ._endpoints import ENDPOINTS
 from .client import (DEFAULT_BASE_URL, QuantSonar, QuantSonarError,
                      RateLimitError, endpoints)

@@ -6,6 +6,8 @@
 
 所有方法返回 pandas.DataFrame；参数与 https://quantsonar.com/docs 一一对应。
 """
+from __future__ import annotations
+
 import os
 
 import pandas as pd
