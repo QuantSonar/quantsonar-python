@@ -12,7 +12,7 @@ from ._endpoints import ENDPOINTS
 from .client import (DEFAULT_BASE_URL, QuantSonar, QuantSonarError,
                      RateLimitError, endpoints)
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __all__ = ["QuantSonar", "QuantSonarError", "RateLimitError",
            "set_token", "endpoints", "ENDPOINTS"]
 

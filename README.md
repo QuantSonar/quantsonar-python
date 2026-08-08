@@ -28,7 +28,7 @@ qs.income(symbol="600519.SH", period="20251231")
 qs.moneyflow(trade_date="20260710")
 qs.top_list(trade_date="20260710")
 
-# 指数与外汇（命名对齐 Tushare 习惯）
+# 指数与外汇
 qs.index_daily(symbol="000300.SH", start_date="20260101")
 qs.fx_daily(start_date="20260101")
 

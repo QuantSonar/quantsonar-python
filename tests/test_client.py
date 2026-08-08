@@ -1,10 +1,24 @@
 """SDK 单测：不触网（mock requests.Session.get）。"""
+from pathlib import Path
+
 import pandas as pd
 import pytest
 
 import quantsonar
 from quantsonar import QuantSonar, QuantSonarError, RateLimitError
 from quantsonar._endpoints import ENDPOINTS
+
+
+def test_public_pypi_copy_uses_product_native_language():
+    root = Path(__file__).resolve().parents[1]
+    public_files = [root / "README.md", root / "pyproject.toml"]
+    public_files.extend((root / "quantsonar").glob("*.py"))
+    forbidden = ("tu" + "share", "命名" + "对齐")
+
+    for path in public_files:
+        content = path.read_text(encoding="utf-8").casefold()
+        for phrase in forbidden:
+            assert phrase.casefold() not in content, f"{phrase!r} found in {path.name}"
 
 
 class FakeResp:

@@ -1,12 +1,12 @@
 [project]
 name = "quantsonar"
-version = "0.1.1"
+version = "0.1.2"
 description = "QuantSonar A 股量化数据 API 官方 Python SDK：行情、财务、资金流、龙虎榜，一个 Key 全部拿到"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "QuantSonar", email = "support@quantsonar.com" }]
-keywords = ["quant", "a-share", "stock", "market-data", "tushare", "api"]
+keywords = ["quant", "a-share", "stock", "market-data", "financial-data", "api"]
 classifiers = [
     "Intended Audience :: Financial and Insurance Industry",
     "Programming Language :: Python :: 3",
