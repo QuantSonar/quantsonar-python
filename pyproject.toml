@@ -1,6 +1,6 @@
 [project]
 name = "quantsonar"
-version = "0.1.0"
+version = "0.1.1"
 description = "QuantSonar A 股量化数据 API 官方 Python SDK：行情、财务、资金流、龙虎榜，一个 Key 全部拿到"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -18,10 +18,15 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://quantsonar.com"
+"Official Website" = "https://quantsonar.com"
 Documentation = "https://quantsonar.com/docs"
+"Create API Key" = "https://quantsonar.com/register?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=project_links"
+Pricing = "https://quantsonar.com/pricing?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=project_links"
+"Hosted MCP Server" = "https://quantsonar.com/mcp"
+"Agent Skill" = "https://github.com/QuantSonar/quantsonar-skills"
 Repository = "https://github.com/QuantSonar/quantsonar-python"
 Issues = "https://github.com/QuantSonar/quantsonar-python/issues"
+Changelog = "https://quantsonar.com/changelog"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]

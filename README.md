@@ -2,6 +2,8 @@
 
 [![tests](https://github.com/QuantSonar/quantsonar-python/actions/workflows/tests.yml/badge.svg)](https://github.com/QuantSonar/quantsonar-python/actions/workflows/tests.yml) [![PyPI](https://img.shields.io/pypi/v/quantsonar)](https://pypi.org/project/quantsonar/)
 
+[官网](https://quantsonar.com/?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme) · [API 文档](https://quantsonar.com/docs?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme) · [免费注册](https://quantsonar.com/register?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme) · [MCP 接入](https://quantsonar.com/docs?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme_mcp) · [Agent Skill](https://github.com/QuantSonar/quantsonar-skills)
+
 [QuantSonar](https://quantsonar.com) 官方 Python SDK —— A 股行情、财务、资金流、筹码、龙虎榜，38 个数据接口，一个 API Key 全部拿到。
 
 ## 安装
