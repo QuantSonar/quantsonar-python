@@ -4,7 +4,7 @@
 
 [官网](https://quantsonar.com/?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme) · [API 文档](https://quantsonar.com/docs?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme) · [免费注册](https://quantsonar.com/register?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme) · [MCP 接入](https://quantsonar.com/docs?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=readme_mcp) · [Agent Skill](https://github.com/QuantSonar/quantsonar-skills)
 
-[QuantSonar](https://quantsonar.com) 官方 Python SDK —— A 股行情、财务、资金流、筹码、龙虎榜，38 个数据接口，一个 API Key 全部拿到。
+[QuantSonar](https://quantsonar.com) 官方 Python SDK —— A 股行情、财务、资金流、筹码、龙虎榜，全部数据接口使用同一个 API Key。
 
 ## 安装
 
@@ -38,7 +38,7 @@ qs.news_flash(source="cls")
 ```
 
 - Key 也可以放环境变量 `QUANTSONAR_TOKEN`，省去 `set_token`
-- 全部接口一览：`qs.endpoints()`（方法名 / 路径 / 中文说明）
+- 全部接口一览：`qs.endpoints()`（方法名 / 路径 / 套餐 / 参数 / 返回字段及说明）
 - 参数与返回字段和 [在线文档](https://quantsonar.com/docs) 一一对应；日期统一 `YYYYMMDD`，证券代码带交易所后缀（`600519.SH`）
 
 ## 错误处理

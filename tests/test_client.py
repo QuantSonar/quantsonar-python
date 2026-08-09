@@ -1,4 +1,5 @@
 """SDK 单测：不触网（mock requests.Session.get）。"""
+import inspect
 from pathlib import Path
 
 import pandas as pd
@@ -103,4 +104,29 @@ def test_all_endpoints_are_callable(client):
 def test_module_level_endpoints_listing():
     df = quantsonar.endpoints()
     assert len(df) == len(ENDPOINTS) >= 38
-    assert {"method", "path", "summary"} <= set(df.columns)
+    assert {
+        "method", "path", "summary", "tier", "params", "fields", "field_docs",
+    } == set(df.columns)
+
+
+def test_dynamic_methods_publish_and_enforce_the_generated_contract(client):
+    portfolio = client.portfolio
+    signature = inspect.signature(portfolio)
+    assert list(signature.parameters) == [
+        "symbol", "con_symbol", "start_date", "end_date", "ann_date",
+    ]
+    assert all(
+        parameter.kind is inspect.Parameter.KEYWORD_ONLY
+        for parameter in signature.parameters.values()
+    )
+    assert "con_symbol" in portfolio.__doc__
+    assert "stk_float_ratio" in portfolio.__doc__
+
+    with pytest.raises(TypeError, match="不支持参数 'index_code'"):
+        client.index_daily(index_code="000300.SH")
+    with pytest.raises(TypeError, match="缺少必填参数 'source'"):
+        client.news_flash()
+
+    client._next_resp = FakeResp(payload=[])
+    client.news_flash(source="cls", importance=1)
+    assert client._calls[-1][1] == {"source": "cls", "importance": 1}

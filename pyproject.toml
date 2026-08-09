@@ -22,7 +22,7 @@ dependencies = [
 Documentation = "https://quantsonar.com/docs"
 "Create API Key" = "https://quantsonar.com/register?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=project_links"
 Pricing = "https://quantsonar.com/pricing?utm_source=pypi&utm_medium=referral&utm_campaign=python_sdk&utm_content=project_links"
-"Hosted MCP Server" = "https://quantsonar.com/mcp"
+"Hosted MCP Server" = "https://quantsonar.com/mcp/"
 "Agent Skill" = "https://github.com/QuantSonar/quantsonar-skills"
 Repository = "https://github.com/QuantSonar/quantsonar-python"
 Issues = "https://github.com/QuantSonar/quantsonar-python/issues"

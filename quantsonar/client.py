@@ -8,6 +8,7 @@
 """
 from __future__ import annotations
 
+import inspect
 import os
 
 import pandas as pd
@@ -72,10 +73,30 @@ class QuantSonar:
                 f"QuantSonar 没有接口 {name!r}，可用接口见 quantsonar.endpoints()")
 
         def _call(**params) -> pd.DataFrame:
+            allowed = set(meta["params"])
+            unknown = sorted(set(params) - allowed)
+            if unknown:
+                raise TypeError(
+                    f"{name}() 不支持参数 {unknown[0]!r}；"
+                    f"可用参数: {', '.join(meta['params']) or '无'}"
+                )
+            missing = [
+                param_name
+                for param_name, contract in meta["params"].items()
+                if contract["required"] and params.get(param_name) is None
+            ]
+            if missing:
+                raise TypeError(f"{name}() 缺少必填参数 {missing[0]!r}")
             return self.query(meta["path"], **params)
 
         _call.__name__ = name
-        _call.__doc__ = f"{meta['summary']}（GET {meta['path']}）"
+        param_names = ", ".join(meta["params"]) or "无"
+        field_names = ", ".join(meta["fields"])
+        _call.__doc__ = (
+            f"{meta['summary']}（GET {meta['path']}）\n\n"
+            f"参数: {param_names}\n返回字段: {field_names}"
+        )
+        _call.__signature__ = _method_signature(meta)
         return _call
 
     def __dir__(self):
@@ -89,9 +110,31 @@ def _detail(resp) -> str:
         return f"HTTP {resp.status_code}"
 
 
+def _method_signature(meta: dict) -> inspect.Signature:
+    annotations = {"string": str, "integer": int}
+    parameters = []
+    for name, contract in meta["params"].items():
+        default = inspect.Parameter.empty if contract["required"] else None
+        parameters.append(inspect.Parameter(
+            name,
+            inspect.Parameter.KEYWORD_ONLY,
+            default=default,
+            annotation=annotations.get(contract["type"], str),
+        ))
+    return inspect.Signature(parameters, return_annotation=pd.DataFrame)
+
+
 def endpoints() -> pd.DataFrame:
-    """全部可用接口一览（方法名 / 路径 / 说明）。"""
+    """全部可用接口一览（含参数和返回字段契约）。"""
     return pd.DataFrame(
-        [{"method": k, "path": v["path"], "summary": v["summary"]}
+        [{
+            "method": k,
+            "path": v["path"],
+            "summary": v["summary"],
+            "tier": v["tier"],
+            "params": list(v["params"]),
+            "fields": v["fields"],
+            "field_docs": v["field_docs"],
+        }
          for k, v in ENDPOINTS.items()]
     )
